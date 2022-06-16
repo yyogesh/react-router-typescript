@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useAuth } from '../common/AuthProvider';
 
 const NavBar = () => {
+    const auth = useAuth();
     const navLinkStyles = ({ isActive }: { isActive: boolean }) => {
         return {
             fontWeight: isActive ? 'bold' : 'normal',
@@ -16,6 +18,10 @@ const NavBar = () => {
             <NavLink to="/about">About</NavLink>
             <NavLink to="/products">Products</NavLink>
             <NavLink to="/users">Users</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
+            {
+                !auth.user && <NavLink to="/login">Login</NavLink>
+            }
         </nav>
     )
 }
